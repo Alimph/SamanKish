@@ -14,37 +14,24 @@ namespace SamanKish.App.Services
         public async Task StartPayment(BaseRequestModel baseModel, StartPaymentModel paymentModel)
         {
             var token = await GetTokenAsync(baseModel);
-            try
+            var options = new RestClientOptions("https://cpcpos.seppay.ir")
             {
-                var options = new RestClientOptions("https://cpcpos.seppay.ir")
-                {
-                    MaxTimeout = baseModel.TimeOut,
-                };
-                var client = new RestClient(options);
-                var request = new RestRequest("/v1/PcPosTransaction/StartPayment", Method.Post);
-                request.AddHeader("Authorization", $"bearer {token}");
-                request.AddHeader("Content-Type", "application/json");
-                var body = JsonConvert.SerializeObject(paymentModel);
-                request.AddJsonBody(body);
-                RestResponse response = await client.ExecuteAsync(request);
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseModel = JsonConvert.DeserializeObject<ResponseModel>(response.Content);
-                    if (!responseModel.IsSuccess)
-                        throw new SamanKishException(responseModel.ErrorDescription);
-                }
-                throw new SamanKishException("خطا در ارسال مبلغ");
-
-            }
-            catch (Exception e)
+                MaxTimeout = baseModel.TimeOut,
+            };
+            var client = new RestClient(options);
+            var request = new RestRequest("/v1/PcPosTransaction/StartPayment", Method.Post);
+            request.AddHeader("Authorization", $"bearer {token}");
+            request.AddHeader("Content-Type", "application/json");
+            var body = JsonConvert.SerializeObject(paymentModel);
+            request.AddJsonBody(body);
+            RestResponse response = await client.ExecuteAsync(request);
+            if (response.IsSuccessStatusCode)
             {
-
-                throw;
+                var responseModel = JsonConvert.DeserializeObject<ResponseModel>(response.Content);
+                if (!responseModel.IsSuccess)
+                    throw new SamanKishException(responseModel.ErrorDescription);
             }
-
-
-
-
+            throw new SamanKishException("خطا در ارسال مبلغ");
         }
         private async Task<string> GetTokenAsync(BaseRequestModel model)
         {
