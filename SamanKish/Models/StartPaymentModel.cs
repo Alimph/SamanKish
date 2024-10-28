@@ -2,6 +2,13 @@
 {
     public class StartPaymentModel
     {
+        public StartPaymentModel(string terminalId, string amount, string identifier, string resNum)
+        {
+            TerminalID = terminalId;
+            Amount = amount;
+            Identifier = identifier;
+            ResNum = resNum;
+        }
         public string TerminalID { get; set; }
         public string Amount { get; set; }
         //single
