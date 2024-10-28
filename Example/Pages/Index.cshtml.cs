@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SamanKish.Agg.Interfaces;
 using SamanKish.Agg.Models;
@@ -7,7 +6,6 @@ namespace Example.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly IPosService _posService;
 
         public IndexModel(IPosService posService)
@@ -20,8 +18,8 @@ namespace Example.Pages
             {
                 var loginModel = new BaseRequestModel
                 {
-                    Password = "@NikanSoft123456",
-                    UserName = "NikanSoft"
+                    Password = "Your password",
+                    UserName = "Your userName"
                 };
                 _posService.StartPayment(loginModel, new StartPaymentModel
                 {
