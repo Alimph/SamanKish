@@ -5,6 +5,6 @@ namespace SamanKish.Agg.Interfaces
 {
     public interface IPosService
     {
-        Task StartPayment(BaseReuestModel loginModel, StartPaymentModel paymentModel);
+        Task StartPayment(BaseRequestModel loginModel, StartPaymentModel paymentModel);
     }
 }

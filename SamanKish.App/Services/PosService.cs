@@ -11,14 +11,14 @@ namespace SamanKish.App.Services
 {
     public class PosService : IPosService
     {
-        public async Task StartPayment(BaseReuestModel baseModel, StartPaymentModel paymentModel)
+        public async Task StartPayment(BaseRequestModel baseModel, StartPaymentModel paymentModel)
         {
             var token = await GetTokenAsync(baseModel);
             try
             {
                 var options = new RestClientOptions("https://cpcpos.seppay.ir")
                 {
-                    MaxTimeout = 100_000,
+                    MaxTimeout = baseModel.TimeOut,
                 };
                 var client = new RestClient(options);
                 var request = new RestRequest("/v1/PcPosTransaction/StartPayment", Method.Post);
@@ -46,7 +46,7 @@ namespace SamanKish.App.Services
 
 
         }
-        private async Task<string> GetTokenAsync(BaseReuestModel model)
+        private async Task<string> GetTokenAsync(BaseRequestModel model)
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Post, "https://idn.seppay.ir/connect/token");

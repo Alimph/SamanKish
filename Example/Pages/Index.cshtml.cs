@@ -18,7 +18,7 @@ namespace Example.Pages
         {
             try
             {
-                var loginModel = new BaseReuestModel
+                var loginModel = new BaseRequestModel
                 {
                     Password = "@NikanSoft123456",
                     UserName = "NikanSoft"
