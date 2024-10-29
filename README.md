@@ -1,5 +1,5 @@
 
-# KaveNegar_Api
+# saman kish PCPOS
 
 A package for connect to Saman kish pos
 
