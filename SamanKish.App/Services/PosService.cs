@@ -11,7 +11,7 @@ namespace SamanKish.App.Services
 {
     public class PosService : IPosService
     {
-        public async Task StartPayment(BaseRequestModel baseModel, StartPaymentModel paymentModel)
+        public async Task StartPaymentAsync(BaseRequestModel baseModel, StartPaymentModel paymentModel)
         {
             var token = await GetTokenAsync(baseModel);
             var options = new RestClientOptions("https://cpcpos.seppay.ir")

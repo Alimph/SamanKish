@@ -12,7 +12,7 @@ namespace Example.Pages
         {
             _posService = posService;
         }
-        public void OnGet()
+        public async void OnGet()
         {
             try
             {
@@ -21,23 +21,7 @@ namespace Example.Pages
                     Password = "Your password",
                     UserName = "Your userName"
                 };
-                _posService.StartPayment(loginModel, new StartPaymentModel
-                {
-                    Amount = "150000",
-                    TerminalID = "14442777",
-                    Identifier = Guid.NewGuid().ToString(),
-                    ResNum = "215777",
-
-                    UserNotifiable = new UserNotifiable
-                    {
-                        FooterMessage = "dd",
-                        PrintItems = new List<PrintItem>
-                    {
-                        new PrintItem("bala","paein",Alignment.Center,ReceiptType.Customer)
-
-                    }
-                    }
-                });
+                await _posService.StartPaymentAsync(loginModel, new StartPaymentModel("14442777", "150000", "215777"));
             }
             catch (Exception e)
             {

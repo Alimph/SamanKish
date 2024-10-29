@@ -1,13 +1,22 @@
-﻿namespace SamanKish.Agg.Models
+﻿using System;
+
+namespace SamanKish.Agg.Models
 {
     public class StartPaymentModel
     {
-        public StartPaymentModel(string terminalId, string amount, string identifier, string resNum)
+        public StartPaymentModel(string terminalId, string amount, string resNum, string item = "", string value = "")
         {
             TerminalID = terminalId;
             Amount = amount;
-            Identifier = identifier;
+            Identifier = Guid.NewGuid().ToString();
             ResNum = resNum;
+            UserNotifiable = new UserNotifiable
+            {
+                PrintItems = new System.Collections.Generic.List<PrintItem>
+                {
+                    new PrintItem(item,value,Alignment.Center,ReceiptType.Customer)
+                }
+            };
         }
         public string TerminalID { get; set; }
         public string Amount { get; set; }
