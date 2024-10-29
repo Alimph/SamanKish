@@ -28,8 +28,9 @@ namespace SamanKish.App.Services
             if (response.IsSuccessStatusCode)
             {
                 var responseModel = JsonConvert.DeserializeObject<ResponseModel>(response.Content);
-                if (!responseModel.IsSuccess)
-                    throw new SamanKishException(responseModel.ErrorDescription);
+                if (responseModel.IsSuccess)
+                    return;
+                throw new SamanKishException(responseModel.ErrorDescription);
             }
             throw new SamanKishException("خطا در ارسال مبلغ");
         }
