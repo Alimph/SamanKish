@@ -15,6 +15,6 @@ A package for connect to Saman kish pos
 
 
 ```bash
-Install-Package SamanKish 
+Install-Package SamanKish.App
 ```
     
