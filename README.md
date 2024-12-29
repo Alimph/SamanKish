@@ -1,5 +1,5 @@
 
-# saman kish PCPOS
+# Saman kish PCPOS
 
 A package for connect to Saman kish pos
 
